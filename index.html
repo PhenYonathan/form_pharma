@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envoyez votre ordonnance</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="img_head">
+        <!-- <h1>Pharmacie de la gare</h1> -->
+    </header>
+
+    <div class="login-box">
+        <h2>Envoyez votre ordonnance</h2>
+        <form name="form_pharam" action="reponse.php" method="POST">
+            <div class="user-box">
+                <input type="text" name="nom" required>
+                <label for="">Votre nom :</label>
+            </div>
+            <br>
+            <div class="user-box">
+                <input type="text" name="mail" required>
+                <label for="">Votre mail :</label>
+            </div>
+            <br>
+            <div class="user-box">
+                <label for="">Votre ordonnance</label> <br>
+                <input type="file" name="ordonnance" id="">
+            </div>
+            <br>
+            <input class="btn_send" type=submit name="submit" value="Envoyer">
+        </form>
+    </div>
+</body>
+</html>
