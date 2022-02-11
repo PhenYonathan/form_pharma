@@ -10,12 +10,13 @@ body {
 
 header{
     text-align: center;
+    
 }
 
 .img_head{
     width: 100%;
     height: 200px;
-    background-image: linear-gradient(#ffffff1f, #daffc521),
+    background-image: linear-gradient(#00000036, #00000041),
     url("assets/photo_facade.jpg") ;
     background-size: cover;
     background-repeat: no-repeat;
@@ -39,6 +40,16 @@ header{
     padding: 0;
     color: #fff;
     text-align: center;
+}
+.login-box h1 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+}
+
+h3{
+    color: white;
 }
   
 .login-box .user-box {
@@ -92,4 +103,17 @@ header{
 .btn_send:hover{
     cursor: pointer;
     transform: translateY(-3px);
+}
+
+.img_pres{
+    height: 300px;
+}
+
+.recap{
+    text-align: center;
+}
+
+.marge{
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
