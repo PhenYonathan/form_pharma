@@ -7,7 +7,7 @@
 
 <body>
     <?php
-    $retour = mail('yonathgm@outlook.fr', 'Envoi depuis la page Contact', $_POST['nom'], 'From: webmaster@monsite.fr');
+    $retour = mail('yonathgm@outlook.fr', "Envoi de l'ordonnance", $_POST['nom'], 'From: webmaster@monsite.fr');
     if ($retour)
         echo '<p>Votre message a bien été envoyé.</p>';
     ?>

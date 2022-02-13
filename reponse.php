@@ -7,7 +7,6 @@
         $point = strpos($email, ".");
         $aroba = strpos($email, "@");
         if ($point === false || $aroba === false){
-            echo 'aaaaaaaaaaaaaa';
             echo "<script type='text/javascript'> alert('Votre email doit comporter un point et un @.'); </script>";
             echo '<script>window.location.href = "index.html";</script>';
         }
