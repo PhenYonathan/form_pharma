@@ -1,10 +1,14 @@
 <link rel="stylesheet" href="style.css">
 
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+require_once 'vendor/autoload.php';
+
 session_start();
 
-     $to = "yonathgm@outlook.fr";
-     $sujet = "Envoi de l'ordonnance";
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
      $message = '
 <style>
 html {
@@ -61,11 +65,6 @@ p{
     </div>
      ';
 
-    use PHPMailer\PHPMailer\PHPMailer;
-
-    require_once "include/phpmailer/Exception.php";
-    require_once "include/phpmailer/PHPMailer.php";
-    require_once "include/phpmailer/SMTP.php";
 
     $mail = new PHPMailer(true);
 
@@ -74,24 +73,23 @@ p{
 
 //        Configuration de l'envoi
         $mail->isSMTP();
-        $mail->Host = "smtp.mailtrap.io";
+        $mail->Host = $_ENV['host'];
         $mail->SMTPAuth = true;
-        $mail->Username = "b429018729c404";
-        $mail->Password = 'b39e8f28bb5bd6';
+        $mail->Username = $_ENV['username'];
+        $mail->Password = $_ENV['pswd'];
         $mail->SMTPSecure = 'tls';
-        $mail->Port = 2525;
+        $mail->Port = $_ENV['port'];
 
         $mail->CharSet = "utf8";
 
-        $mail->addAddress("yonathgm@outlook.fr");
-        $mail->addCC("cc@mail.fr");
+        $mail->addAddress($_ENV['mailTo']);
+        $mail->addCC($_ENV['mailCc']);
 //        FROM
         $mail->setFrom("formulaire@site.fr");
 
 //        Message
         $mail->isHTML();
         $mail->Subject= "Ordonannce envoyer via formulaire";
-//        $mail->addAttachment($_SESSION["s_ordonnance"], 'ordonnance_de_'.$_SESSION["s_nom"]);
         $mail->addAttachment($_SESSION["s_ordonnance"]);
         $mail->Body= $message;
 //        Au cas ou HTML non pris en compte
@@ -110,10 +108,13 @@ p{
             </div>
         </div>
         </div>';
+
+        session_destroy();
+
         unlink($_SESSION["s_ordonnance"]);
     }catch(Exception){
         echo "Votre message n'a pas pu être envoyer. Erreur : {$mail->ErrorInfo}";
-        echo '<a href="index.html">Retour au menu</a>';
+        echo '<a href="index.php">Retour au menu</a>';
     }
 
 ?>

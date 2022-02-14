@@ -1,3 +1,10 @@
+<?php
+require_once 'vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -30,9 +37,15 @@
                 <label for="">Votre ordonnance</label> <br>
                 <input type="file" name="ordonnance" accept="image/png, image/jpeg, image/jpg, .pdf" required>
             </div>
+
+            <div class="user-box">
+                <div class="g-recaptcha" data-sitekey=<?php echo $_ENV["apiKey"] ?> ></div>
+            </div>
             <br>
             <input class="btn_send" type=submit name="submit" value="Envoyer">
         </form>
     </div>
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </body>
 </html>
