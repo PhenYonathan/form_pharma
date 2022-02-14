@@ -1,21 +1,42 @@
 # Form pharma
 Formulaire d'envoi d'ordonnances.
 
-## Dépendances
-### PHPMailer
-Pour faire fonctionner l'envoi de mail le service PHPMailer à été utilisé. https://github.com/PHPMailer/PHPMailer
-
 # Installation
+## Cloner le projet
 ```bash
 $ git clone git@github.com:PhenYonathan/form_pharma.git
+```
+## Installer composer
+```bash
+$ composer install
+```
+## Installer les dépendances
+
+```bash
+$ composer require install
 ```
 
 # Utilisation
 ## Mise en place
-### Configuration du serveur mail
+- Renommer le fichier exemple_env en .env
+- Renseigner les informations demandés dans ce fichier
+```env
+apiKey = clé d'api pour le capcha
+mailTo = mail vers qui vont être envoyer les ordonannces
+mailCc = un mail de cc
 
+### Fourni par le server ###
+host =  
+username =
+pswd =
+port =
+```
 
+---
 # Versions
+[1.0.1]
+- Ajout d'un .env
+- installation simplifier et plus propre
 
 [1.0.0]
 - Possibilité d'envoi de formulaire
