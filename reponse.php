@@ -33,7 +33,7 @@
 
             <div class="confirm">
                 <label>Si toutes les informations sont correctes merci de </label>
-                <input type="submit" value="Confirmer" disabled>
+                <input type="submit" value="Confirmer">
             </div>
         </form>
     </div>
