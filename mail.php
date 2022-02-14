@@ -1,8 +1,15 @@
 <?php
+session_start();
 
      $to = "yonathgm@outlook.fr";
      $sujet = "Envoi de l'ordonnance";
-     $message = $_POST['nom'];
+     $message = '
+    <div class="content">
+        <h1>Vous venez de recevoir l\'ordonannce de : '.$_SESSION["s_nom"].'</h1>
+        <h2>Mail : '.$_SESSION["s_mail"].'</h2>
+        <p>Veuillez retrouver l\'ordonnance en piéce jointe.</p>
+    </div>
+     ';
 
     // $headers = [
     //     "From" => "formulaire@site.fr",
@@ -39,6 +46,7 @@
 //        Message
         $mail->isHTML();
         $mail->Subject= "Ordonannce envoyer via formaulaire";
+        $mail->addAttachment('', 'ordonnance_de_'.$_SESSION["s_nom"].'.jpg');
         $mail->Body= $message;
 //        Au cas ou HTML non pris en compte
         $mail->AltBody= $message;

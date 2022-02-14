@@ -15,7 +15,7 @@
 
     <div class="login-box">
         <h2>Envoyez votre ordonnance</h2>
-        <form name="form_pharam" action="reponse.php" method="POST">
+        <form name="form_pharam" action="reponse.php" method="POST" enctype="multipart/form-data">
             <div class="user-box">
                 <input type="text" name="nom" required>
                 <label for="">Votre nom :</label>
@@ -28,7 +28,7 @@
             <br>
             <div class="user-box">
                 <label for="">Votre ordonnance</label> <br>
-                <input type="file" name="ordonnance" id="">
+                <input type="file" name="ordonnance">
             </div>
             <br>
             <input class="btn_send" type=submit name="submit" value="Envoyer">
