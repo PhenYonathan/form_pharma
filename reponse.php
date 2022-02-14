@@ -33,13 +33,14 @@
 //        }
 
         $tempName = $_FILES['ordonnance']['tmp_name'];
-        $nomUnique = md5(uniqid(rand(), true));
-        $fileName = "files/" . $nomUnique . $fileExt;
+        $newName = "Ordonnance_de_".$_POST['nom'];
+        $fileName = "files/" . $newName . $fileExt;
+        $resultat = move_uploaded_file($tempName, $fileName);
 
         session_start();
         $_SESSION["s_nom"] = $_POST['nom'];
         $_SESSION["s_mail"] = $_POST['mail'];
-//        $_SESSION["s_ordonnance"] = $_POST['ordonnance'];
+        $_SESSION["s_ordonnance"] = $fileName;
     }
 ?>
 
@@ -57,13 +58,19 @@
             <h1>Bonjour, vous êtes bien <?php echo $_SESSION["s_nom"] ?> ?</h1>
             <h2>Votre email est  <?php echo $_SESSION["s_mail"] ?></h2>
             <h3>Votre ordonnance est bien celle ci ?</h3>
-            <img class="img_pres" src="<?php echo $fileName ?>" alt="">
+            <?php
+                if($fileExt == ".pdf"){
+                    echo "<iframe width='100%' height='500px' src='$fileName'></iframe>";
+                }else{
+                    echo "<img class='img_pres' src='$fileName'>";
+                }
+            ?>
 
             <hr class="marge">
 
             <div class="confirm">
-                <label>Si toutes les informations sont correctes merci de </label>
-                <input type="submit" value="Confirmer">
+                <label style="color: white">Si toutes les informations sont correctes merci de </label>
+                <input class="btn_send" type="submit" value="Confirmer">
             </div>
         </form>
     </div>
