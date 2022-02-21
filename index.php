@@ -16,9 +16,9 @@ $dotenv->load();
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="img_head">
-         <h1>Pharmacie de la gare - Fonction mail</h1>
-    </header>
+<!--    <header class="img_head">-->
+<!--         <h1>Pharmacie de la gare - Fonction mail</h1>-->
+<!--    </header>-->
 
     <div class="login-box">
         <h2>Envoyez votre ordonnance</h2>

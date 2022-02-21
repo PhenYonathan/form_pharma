@@ -8,7 +8,11 @@ session_start();
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-     $message = '
+    $header = [
+        "From" => $_SESSION["s_mail"],
+        "Content-Type" => "text/html; charset=utf8"
+    ];
+    $message = '
 <style>
 html {
     height: 100%;
@@ -64,14 +68,14 @@ p{
     </div>
      ';
 
-
-
-    try{
+//    try{
 //        $mail->SMTPDebug = SMTP::DEBUG_SERVER;
 
-        $retour = mail($_ENV['mailTo'],
+        mail($_ENV['mailTo'],
             'Envoi depuis la page Contact',
-            $message);
+            "test",
+            $header
+        );
 
         echo '
         <div class="login-box">
@@ -89,9 +93,9 @@ p{
         session_destroy();
 
         unlink($_SESSION["s_ordonnance"]);
-    }catch(Exception){
-        echo "Votre message n'a pas pu être envoyer.";
-        echo '<a href="index.php">Retour au menu</a>';
-    }
+//    }catch(Exception){
+//        echo "Votre message n'a pas pu être envoyer.";
+//        echo '<a href="index.php">Retour au menu</a>';
+//    }
 
 ?>
