@@ -3,6 +3,22 @@ require_once 'vendor/autoload.php';
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
+
+if (isset($_POST['submit'])){
+    if(isset($_POST['g-recaptcha-response'])){
+        $recaptcha = new \ReCaptcha\ReCaptcha($_ENV['apiKeySecret']);
+        $resp = $recaptcha->setExpectedHostname('recaptcha-demo.appspot.com')
+            ->verify($_POST['g-recaptcha-response']);
+        if ($resp->isSuccess()) {
+            echo "<script type='text/javascript'> alert('Valide'); </script>";
+        } else {
+            $errors = $resp->getErrorCodes();
+            echo "<script type='text/javascript'> alert('Erreur captcha'); </script>";
+        }
+    }else{
+        echo "<script type='text/javascript'> alert('Merci de confirmer le captcha'); </script>";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +38,7 @@ $dotenv->load();
 
     <div class="login-box">
         <h2>Envoyez votre ordonnance</h2>
-        <form name="form_pharam" action="reponse.php" method="POST" enctype="multipart/form-data">
+        <form name="form_pharam" action="index.php" method="POST" enctype="multipart/form-data">
             <div class="user-box">
                 <input type="text" name="nom" required>
                 <label for="">Votre nom :</label>
