@@ -1,7 +1,6 @@
 <link rel="stylesheet" href="style.css">
 
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
 require_once 'vendor/autoload.php';
 
 session_start();
@@ -66,36 +65,14 @@ p{
      ';
 
 
-    $mail = new PHPMailer(true);
 
     try{
 //        $mail->SMTPDebug = SMTP::DEBUG_SERVER;
 
-//        Configuration de l'envoi
-        $mail->isSMTP();
-        $mail->Host = $_ENV['host'];
-        $mail->SMTPAuth = true;
-        $mail->Username = $_ENV['username'];
-        $mail->Password = $_ENV['pswd'];
-        $mail->SMTPSecure = 'tls';
-        $mail->Port = $_ENV['port'];
+        $retour = mail($_ENV['mailTo'],
+            'Envoi depuis la page Contact',
+            $message);
 
-        $mail->CharSet = "utf8";
-
-        $mail->addAddress($_ENV['mailTo']);
-        $mail->addCC($_ENV['mailCc']);
-//        FROM
-        $mail->setFrom("formulaire@site.fr");
-
-//        Message
-        $mail->isHTML();
-        $mail->Subject= "Ordonannce envoyer via formulaire";
-        $mail->addAttachment($_SESSION["s_ordonnance"]);
-        $mail->Body= $message;
-//        Au cas ou HTML non pris en compte
-        $mail->AltBody= $message;
-
-        $mail->send();
         echo '
         <div class="login-box">
             <h1>Votre message a bien été envoyer</h1>
@@ -113,7 +90,7 @@ p{
 
         unlink($_SESSION["s_ordonnance"]);
     }catch(Exception){
-        echo "Votre message n'a pas pu être envoyer. Erreur : {$mail->ErrorInfo}";
+        echo "Votre message n'a pas pu être envoyer.";
         echo '<a href="index.php">Retour au menu</a>';
     }
 

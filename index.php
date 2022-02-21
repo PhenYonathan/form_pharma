@@ -17,7 +17,7 @@ $dotenv->load();
 </head>
 <body>
     <header class="img_head">
-        <!-- <h1>Pharmacie de la gare</h1> -->
+         <h1>Pharmacie de la gare - Fonction mail</h1>
     </header>
 
     <div class="login-box">
@@ -38,9 +38,9 @@ $dotenv->load();
                 <input type="file" name="ordonnance" accept="image/png, image/jpeg, image/jpg, .pdf" required>
             </div>
 
-            <div class="user-box">
-                <div class="g-recaptcha" data-sitekey=<?php echo $_ENV["apiKey"] ?> ></div>
-            </div>
+<!--            <div class="user-box">-->
+<!--                <div class="g-recaptcha" data-sitekey=--><?php //echo $_ENV["apiKey"] ?><!-- ></div>-->
+<!--            </div>-->
             <br>
             <input class="btn_send" type=submit name="submit" value="Envoyer">
         </form>
